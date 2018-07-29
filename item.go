@@ -100,6 +100,17 @@ func (i *Item) Url() string {
 	return i.overview.getString("url")
 }
 
+func (id *Item) Urls() []*Url {
+	urlMaps := id.overview.getMapSlice("URLs")
+
+	urls := make([]*Url, 0, len(urlMaps))
+	for _, urlMap := range urlMaps {
+		urls = append(urls, &Url{urlMap})
+	}
+
+	return urls
+}
+
 func (i *Item) Trashed() bool {
 	return i.overview.getBool("trashed")
 }
@@ -211,6 +222,18 @@ func readItem(profile *Profile, data map[string]interface{}) (*Item, error) {
 	return item, nil
 }
 
+type Url struct {
+	data dataMap
+}
+
+func (u *Url) Label() string {
+	return u.data.getString("l")
+}
+
+func (u *Url) Url() string {
+	return u.data.getString("u")
+}
+
 type ItemDetail struct {
 	data dataMap
 }
@@ -218,7 +241,7 @@ type ItemDetail struct {
 func (id *ItemDetail) Fields() []*Field {
 	fieldMaps := id.data.getMapSlice("fields")
 
-	fields := []*Field{}
+	fields := make([]*Field, 0, len(fieldMaps))
 	for _, fieldMap := range fieldMaps {
 		fields = append(fields, &Field{fieldMap})
 	}
