@@ -108,6 +108,14 @@ func (i *Item) Tags() []string {
 	return i.overview.getStringSlice("tags")
 }
 
+func (i *Item) Overview() map[string]interface{} {
+	return i.overview
+}
+
+func (i *Item) Data() map[string]interface{} {
+	return i.data
+}
+
 func (i *Item) Detail() (*ItemDetail, error) {
 	itemKey, itemMAC, err := i.itemKeys()
 	if err != nil {
