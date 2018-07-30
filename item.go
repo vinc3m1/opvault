@@ -264,9 +264,9 @@ func (id *ItemDetail) Notes() string {
 func (id *ItemDetail) Sections() []*Section {
 	sectionMaps := id.data.getMapSlice("sections")
 
-	sections := []*Section{}
-	for _, sectionMap := range sectionMaps {
-		sections = append(sections, &Section{sectionMap})
+	sections := make([]*Section, len(sectionMaps))
+	for i, sectionMap := range sectionMaps {
+		sections[i] = &Section{sectionMap}
 	}
 
 	return sections
@@ -328,9 +328,9 @@ func (s *Section) Title() string {
 func (s *Section) Fields() []*SectionField {
 	fieldMaps := s.data.getMapSlice("fields")
 
-	fields := []*SectionField{}
-	for _, fieldMap := range fieldMaps {
-		fields = append(fields, &SectionField{fieldMap})
+	fields := make([]*SectionField, len(fieldMaps))
+	for i, fieldMap := range fieldMaps {
+		fields[i] = &SectionField{fieldMap}
 	}
 
 	return fields
