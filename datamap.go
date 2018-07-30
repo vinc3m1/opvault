@@ -7,8 +7,8 @@ import (
 type dataMap map[string]interface{}
 
 func (d dataMap) getBool(key string) bool {
-	val, _ := d[key].(bool)
-	return val
+	val, ok := d[key]
+	return ok && val != 0
 }
 
 func (d dataMap) getInt(key string) int {

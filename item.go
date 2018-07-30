@@ -112,7 +112,7 @@ func (id *Item) Urls() []*Url {
 }
 
 func (i *Item) Trashed() bool {
-	return i.overview.getBool("trashed")
+	return i.data.getBool("trashed")
 }
 
 func (i *Item) Tags() []string {
