@@ -115,6 +115,10 @@ func (i *Item) Trashed() bool {
 	return i.data.getBool("trashed")
 }
 
+func (i *Item) Info() string {
+	return i.overview.getString("ainfo")
+}
+
 func (i *Item) Tags() []string {
 	return i.overview.getStringSlice("tags")
 }
