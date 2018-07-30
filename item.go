@@ -238,6 +238,10 @@ type ItemDetail struct {
 	data dataMap
 }
 
+func (id *ItemDetail) Data() map[string]interface{} {
+	return id.data
+}
+
 func (id *ItemDetail) Fields() []*Field {
 	fieldMaps := id.data.getMapSlice("fields")
 
